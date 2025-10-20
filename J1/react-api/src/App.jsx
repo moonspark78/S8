@@ -39,7 +39,7 @@ function App() {
   return (
     <Container>
       <h1>🛍️ Nos Produits 🛍️</h1>
-      <Button onClick={handleAddProduct} style={{ marginBottom: "2rem" }}>
+      <Button onClick={handleAddProduct} className="mb-4">
         Ajouter un produit
       </Button>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
