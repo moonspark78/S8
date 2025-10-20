@@ -1,47 +1,5 @@
-/* App.css */
-
-.products-title {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.product-card {
-  height: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.product-image-container {
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: #fff;
-}
-
-.product-image {
-  height: 100%;
-  width: auto;
+img {
+  height: 150px;
   object-fit: contain;
 }
 
-.product-title {
-  font-size: 1rem;
-  height: 3em;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.product-description {
-  flex-grow: 1;
-  font-size: 0.9rem;
-  color: #555;
-  height: 6em;
-  overflow: hidden;
-}

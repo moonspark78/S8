@@ -1,7 +1,6 @@
-// App.jsx
 import { useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
-import "./App.css"; // ✅ on importe le CSS
+import "./App.css";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -16,29 +15,17 @@ function App() {
   }, []);
 
   return (
-    <Container className="my-5">
-      <h1 className="products-title">🛍️ Nos Produits 🛍️</h1>
-      <Row className="g-4">
+    <Container>
+      <h1>🛍️ Nos Produits 🛍️</h1>
+      <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {products.map((product) => (
-          <Col key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Card className="product-card">
-              <div className="product-image-container">
-                <Card.Img
-                  variant="top"
-                  src={product.image}
-                  alt={product.title}
-                  className="product-image"
-                />
-              </div>
-
-              <Card.Body className="d-flex flex-column">
-                <Card.Title className="product-title">
-                  {product.title}
-                </Card.Title>
-                <Card.Text className="product-description">
-                  {product.description}
-                </Card.Text>
-                <h5 className="fw-bold">{product.price} €</h5>
+          <Col key={product.id}>
+            <Card style={{ height: "100%" }}>
+              <Card.Img src={product.image} alt={product.title} />
+              <Card.Body>
+                <Card.Title>{product.title}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <div className="product-price">{product.price} €</div>
               </Card.Body>
             </Card>
           </Col>
