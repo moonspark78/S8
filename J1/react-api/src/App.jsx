@@ -20,12 +20,12 @@ function App() {
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {products.map((product) => (
           <Col key={product.id}>
-            <Card style={{ height: "100%" }}>
+            <Card>
               <Card.Img src={product.image} alt={product.title} />
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
-                <div className="product-price">{product.price} €</div>
+                <Card.Text>{product.price} €</Card.Text>
               </Card.Body>
             </Card>
           </Col>
