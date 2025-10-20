@@ -14,6 +14,8 @@ function App() {
     fetchProducts();
   }, []);
 
+
+  // ACTIVITÉ 4 — Ajouter un produit
   const handleAddProduct = async () => {
     const newProduct = {
       title: "Produit Test",
@@ -35,6 +37,8 @@ function App() {
     alert(`Le produit avec l'id ${data.id} a été créé`);
   };
 
+
+  // ACTIVITÉ 5 — Modifier complètement un produit
   const handleUpdateProduct = async (id) => {
     const updatedProduct = {
       title: "Produit modifié complètement",
@@ -54,6 +58,28 @@ function App() {
     alert(`Le produit avec l'id ${data.id} a été modifié`);
   };
 
+  // ACTIVITÉ 6 — Modifier partiellement le prix
+  const handleUpdatePrice = async (id) => {
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ price: 5 }),
+  });
+  const data = await response.json();
+  alert(`Le prix du produit avec l'id ${data.id} a été modifié`);
+};
+
+
+  //ACTIVITÉ 7 — Supprimer un produit
+  const handleDeleteProduct = async (id) => {
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  alert(`Le produit avec l'id ${data.id} a été supprimé`);
+};
+
+
   return (
     <Container>
       <h1>🛍️ Nos Produits 🛍️</h1>
@@ -69,15 +95,29 @@ function App() {
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>{product.description}</Card.Text>
                 <Card.Text>{product.price} €</Card.Text>
-                <Card.Footer>
+              </Card.Body>
+              <Card.Footer className="row gap-2">
                 <Button
                   variant="warning"
                   onClick={() => handleUpdateProduct(product.id)}
                 >
                   Modifier le produit complet
                 </Button>
-                </Card.Footer>
-              </Card.Body>
+
+                <Button
+                  variant="info"
+                  onClick={() => handleUpdatePrice(product.id)}
+                >
+                  Modifier le prix du produit
+                </Button>
+
+                <Button
+                  variant="danger"
+                  onClick={() => handleDeleteProduct(product.id)}
+                >
+                  Supprimer le produit
+                </Button>
+              </Card.Footer>
             </Card>
           </Col>
         ))}
