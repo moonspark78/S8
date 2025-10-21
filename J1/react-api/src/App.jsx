@@ -32,7 +32,7 @@ function App() {
         title: "Produit Test",
         price: 19.99,
         description: "Description du produit test",
-        image: "https://via.placeholder.com/150",
+        image: " https://picsum.photos/200/300",
         category: "test",
       };
 
@@ -46,6 +46,7 @@ function App() {
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créé`);
+      setProducts([...products, data]);
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la création du produit.");
