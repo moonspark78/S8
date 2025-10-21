@@ -47,7 +47,7 @@ function App() {
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créé`);
       setProducts((prevProducts) => [...prevProducts, data]);
-      
+
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la création du produit.");
@@ -111,6 +111,7 @@ function App() {
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été supprimé`);
+      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la suppression du produit.");
