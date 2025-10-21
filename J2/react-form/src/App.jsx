@@ -66,7 +66,7 @@ const App = () => {
             value={formData.priority}
             onChange={handleChange}
           >
-            <option value="low">Basse - Par défaut</option>
+            <option value="low">Basse</option>
             <option value="middle">Moyenne</option>
             <option value="high">Élevée</option>
           </Form.Select>
