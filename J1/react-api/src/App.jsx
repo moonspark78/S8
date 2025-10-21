@@ -46,7 +46,8 @@ function App() {
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créé`);
-      setProducts([...products, data]);
+      setProducts((prevProducts) => [...prevProducts, data]);
+      
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la création du produit.");
