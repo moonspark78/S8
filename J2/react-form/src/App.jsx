@@ -5,7 +5,7 @@ const App = () => {
   const [formData, setFormData] = useState({
     name: "",
     dueDate: "",
-    priority: "Basse",
+    priority: "low",
     isCompleted: false,
   });
 
@@ -24,7 +24,7 @@ const App = () => {
     setFormData({
       name: "",
       dueDate: "",
-      priority: "Basse",
+      priority: "low",
       isCompleted: false,
     });
   };
@@ -66,9 +66,9 @@ const App = () => {
             value={formData.priority}
             onChange={handleChange}
           >
-            <option value="low">Low</option>
-            <option value="middle">Middle</option>
-            <option value="high">High</option>
+            <option value="low">Basse - Par défaut</option>
+            <option value="middle">Moyenne</option>
+            <option value="high">Élevée</option>
           </Form.Select>
         </Form.Group>
 
