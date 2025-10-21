@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <Container className="mt-5">
-      <h2>Ajouter une tâche</h2>
+      <h1>Ajouter une tâche</h1>
       <Form onSubmit={handleSubmit}>
         
         <Form.Group className="mb-3" controlId="formName">
@@ -60,15 +60,15 @@ const App = () => {
 
        
         <Form.Group className="mb-3" controlId="formPriority">
-          <Form.Label>Priorité</Form.Label>
+          <Form.Label>Priority</Form.Label>
           <Form.Select
             name="priority"
             value={formData.priority}
             onChange={handleChange}
           >
-            <option value="Basse">Basse</option>
-            <option value="Moyenne">Moyenne</option>
-            <option value="Elevée">Elevée</option>
+            <option value="low">Low</option>
+            <option value="middle">Middle</option>
+            <option value="high">High</option>
           </Form.Select>
         </Form.Group>
 
