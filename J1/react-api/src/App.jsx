@@ -32,7 +32,7 @@ function App() {
         title: "Produit Test",
         price: 19.99,
         description: "Description du produit test",
-        image: " https://picsum.photos/200/300",
+        image: "https://picsum.photos/200/300",
         category: "test",
       };
 
@@ -47,7 +47,6 @@ function App() {
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créé`);
       setProducts((prevProducts) => [...prevProducts, data]);
-
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la création du produit.");
@@ -61,7 +60,7 @@ function App() {
         title: "Produit modifié complètement",
         price: 29.99,
         description: "Nouvelle description du produit modifié",
-        image: "https://via.placeholder.com/150/00FF00",
+        image: "https://picsum.photos/200/300",
         category: "updated",
       };
 
@@ -75,6 +74,7 @@ function App() {
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été modifié`);
+      setProducts((prevProducts) => prevProducts.map((p) => (p.id === id ? data : p)));
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la modification du produit.");
@@ -94,6 +94,9 @@ function App() {
 
       const data = await response.json();
       alert(`Le prix du produit avec l'id ${data.id} a été modifié`);
+      setProducts((prevProducts) =>
+        prevProducts.map((p) => (p.id === id ? { ...p, price: data.price } : p))
+      );
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la modification du prix.");
@@ -111,7 +114,9 @@ function App() {
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été supprimé`);
-      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id !== id)
+      );
     } catch (err) {
       console.error(err.message);
       alert("Erreur lors de la suppression du produit.");
