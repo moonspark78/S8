@@ -27,38 +27,50 @@ const App = () => {
     <Container className="mt-5">
       <h1>Ajouter une tâche</h1>
 
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form noValidate onSubmit={handleSubmit(onSubmit)}>
+    
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nom</Form.Label>
           <Form.Control
             type="text"
             placeholder="Entrez le nom"
+            isInvalid={!!errors.name}
             {...register("name", { required: "Le nom est requis" })}
           />
-          {errors.name && (
-            <small className="text-danger">{errors.name.message}</small>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.name?.message}
+          </Form.Control.Feedback>
         </Form.Group>
 
+   
         <Form.Group className="mb-3" controlId="formDate">
           <Form.Label>Date due</Form.Label>
           <Form.Control
             type="date"
+            isInvalid={!!errors.dueDate}
             {...register("dueDate", { required: "La date est requise" })}
           />
-          {errors.dueDate && (
-            <small className="text-danger">{errors.dueDate.message}</small>
-          )}
+          <Form.Control.Feedback type="invalid">
+            {errors.dueDate?.message}
+          </Form.Control.Feedback>
         </Form.Group>
+
 
         <Form.Group className="mb-3" controlId="formPriority">
           <Form.Label>Priorité</Form.Label>
-          <Form.Select {...register("priority", { required: true })}>
+          <Form.Select
+            isInvalid={!!errors.priority}
+            {...register("priority", { required: "La priorité est requise" })}
+          >
             <option value="low">Basse</option>
             <option value="middle">Moyenne</option>
             <option value="high">Élevée</option>
           </Form.Select>
+          <Form.Control.Feedback type="invalid">
+            {errors.priority?.message}
+          </Form.Control.Feedback>
         </Form.Group>
+
 
         <Form.Group className="mb-3" controlId="formCompleted">
           <Form.Check
