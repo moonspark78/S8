@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import todoReducer from "./todoSlice"; // Importation du reducer
+import todoReducer from "./todoSlice";
 
-// Création du store Redux
 const store = configureStore({
   reducer: {
-    todos: todoReducer, // Associe le reducer des tâches
+    todos: todoReducer,
   },
 });
 
