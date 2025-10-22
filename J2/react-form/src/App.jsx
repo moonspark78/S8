@@ -27,8 +27,8 @@ const App = () => {
     <Container className="mt-5">
       <h1>Ajouter une tâche</h1>
 
-      <Form noValidate onSubmit={handleSubmit(onSubmit)}>
-    
+      <Form onSubmit={handleSubmit(onSubmit)}>
+  
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nom</Form.Label>
           <Form.Control
@@ -37,12 +37,14 @@ const App = () => {
             isInvalid={!!errors.name}
             {...register("name", { required: "Le nom est requis" })}
           />
-          <Form.Control.Feedback type="invalid">
-            {errors.name?.message}
-          </Form.Control.Feedback>
+          {errors.name && (
+            <Form.Control.Feedback type="invalid">
+              {errors.name.message}
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
 
-   
+    
         <Form.Group className="mb-3" controlId="formDate">
           <Form.Label>Date due</Form.Label>
           <Form.Control
@@ -50,12 +52,14 @@ const App = () => {
             isInvalid={!!errors.dueDate}
             {...register("dueDate", { required: "La date est requise" })}
           />
-          <Form.Control.Feedback type="invalid">
-            {errors.dueDate?.message}
-          </Form.Control.Feedback>
+          {errors.dueDate && (
+            <Form.Control.Feedback type="invalid">
+              {errors.dueDate.message}
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
 
-
+   
         <Form.Group className="mb-3" controlId="formPriority">
           <Form.Label>Priorité</Form.Label>
           <Form.Select
@@ -66,12 +70,14 @@ const App = () => {
             <option value="middle">Moyenne</option>
             <option value="high">Élevée</option>
           </Form.Select>
-          <Form.Control.Feedback type="invalid">
-            {errors.priority?.message}
-          </Form.Control.Feedback>
+          {errors.priority && (
+            <Form.Control.Feedback type="invalid">
+              {errors.priority.message}
+            </Form.Control.Feedback>
+          )}
         </Form.Group>
 
-
+      
         <Form.Group className="mb-3" controlId="formCompleted">
           <Form.Check
             type="checkbox"
