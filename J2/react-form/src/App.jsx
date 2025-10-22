@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { Container, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// ✅ Schéma de validation yup
 const schema = yup.object().shape({
   name: yup
     .string()
@@ -22,7 +21,10 @@ const schema = yup.object().shape({
     .test("is-future", "Date invalide", (value) => {
       if (!value) return false;
       const [d, m, y] = value.split("/").map(Number);
-      return new Date(y, m - 1, d) >= new Date();
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const enteredDate = new Date(y, m - 1, d);
+      return enteredDate >= today;
     })
     .required("Date requise"),
 
@@ -41,6 +43,12 @@ const App = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      name: "",
+      date: "",
+      priority: "",
+      checkbox: false,
+    },
   });
 
   const onSubmit = (data) => console.log(data);
@@ -50,7 +58,6 @@ const App = () => {
       <h1>Ajouter une tâche</h1>
 
       <Form onSubmit={handleSubmit(onSubmit)}>
-       
         <Form.Group className="mb-3">
           <Form.Label>Nom</Form.Label>
           <Form.Control
@@ -66,7 +73,6 @@ const App = () => {
           )}
         </Form.Group>
 
-     
         <Form.Group className="mb-3">
           <Form.Label>Date due</Form.Label>
           <Form.Control
@@ -82,7 +88,6 @@ const App = () => {
           )}
         </Form.Group>
 
-  
         <Form.Group className="mb-3">
           <Form.Label>Priorité</Form.Label>
           <Form.Select {...register("priority")} isInvalid={!!errors.priority}>
@@ -98,7 +103,6 @@ const App = () => {
           )}
         </Form.Group>
 
-      
         <Form.Group className="mb-3">
           <Form.Check
             type="checkbox"
