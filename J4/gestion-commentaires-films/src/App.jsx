@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Alert } from "react-bootstrap";
+import MovieCard from "./components/MovieCard";
+import CommentForm from "./components/CommentForm";
+import CommentsList from "./components/CommentsList";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+  fetch("https://jsonfakery.com/movies/random/1")
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`Erreur ${res.status} : ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setMovie(data[0]);
+    })
+    .catch((err) => {
+      console.log("Erreur lors du fetch :", err);
+      setError("Impossible de charger le film pour le moment.");
+    })
+    .finally(() => {
+      setLoading(false); 
+    });
+}, []);
+
+  if (loading) return <p className="loading-text">Chargement du film...</p>;
+
+  if (error)
+    return (
+      <Alert variant="danger" className="text-center mt-4">
+        {error}
+      </Alert>
+    );
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Container fluid>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <MovieCard movie={movie} />
+          <h2 className="mt-4">Commentaires</h2>
+          <CommentForm />
+          <CommentsList />
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-export default App
+export default App;
