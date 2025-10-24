@@ -67,7 +67,6 @@ const CommentForm = () => {
       <Form.Group className="mb-3" controlId="commentNote">
         <Form.Label>Note</Form.Label>
         <Form.Select
-          defaultValue=""
           {...register("note")}
           isInvalid={!!errors.note}
         >
@@ -89,6 +88,8 @@ const CommentForm = () => {
           label="J'accepte les conditions générales"
           {...register("acceptConditions")}
           isInvalid={!!errors.acceptConditions}
+          feedbackType="invalid"
+          feedback={errors.acceptConditions?.message}
         />
       </Form.Group>
 

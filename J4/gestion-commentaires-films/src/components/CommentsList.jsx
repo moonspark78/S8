@@ -23,7 +23,7 @@ const CommentsList = () => {
   }
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 mb-4">
       <h3>Liste des commentaires</h3>
       <ListGroup>
         {comments.map((comment) => (
